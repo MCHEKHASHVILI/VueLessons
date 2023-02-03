@@ -10,7 +10,7 @@ const data = store.getters.getCart
     <div class="flex flex-col space-y-2">
         <SourceTittle :title="title" />
         <ul>
-            <ListItem v-for="item in data" :key="item.index" :data="item" action="delete"/>
+            <ListItem v-for="item in data" :key="item.index" :data="item" action="delete" />
         </ul>
     </div>
 </template>

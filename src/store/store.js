@@ -17,16 +17,16 @@ const store = createStore({
         }
     },
     getters: {
-        getProducts(state){
+        getProducts(state) {
             return state.products
         },
-        getCart(state){
+        getCart(state) {
             return state.cart
         },
-        getPrimaryButtonClasses(state){
+        getPrimaryButtonClasses(state) {
             return state.buttonClasses.primary
         },
-        getDangerButtonClasses(state){
+        getDangerButtonClasses(state) {
             return state.buttonClasses.danger
         },
     },
@@ -43,12 +43,12 @@ const store = createStore({
         }
     },
     actions: {
-        addItemToCart({ commit }, payload){
+        addItemToCart({ commit }, payload) {
             commit('addItemToCart', payload)
 
-            
+
         },
-        removeItemFromCart({ commit }, payload){
+        removeItemFromCart({ commit }, payload) {
             commit('removeItemFromCart', payload)
         },
     }
