@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 const store = createStore({
     state() {
         return {
+            temp_product: null,
             products: [
                 { id: 1, name: 'Product 1', price: 100 },
                 { id: 2, name: 'Product 2', price: 200 },
@@ -31,25 +32,40 @@ const store = createStore({
         },
     },
     mutations: {
-        addItemToCart(state, payload) {
-            let item = state.products.find(item => item.id === +payload)
-            state.cart.push(item)
-            state.products.splice(state.products.indexOf(item), 1)
+        findItemInProductsById(state, payload){
+            state.temp_product = state.products.find(item => item.id === +payload)
         },
-        removeItemFromCart(state, payload) {
-            let item = store.state.cart.find(item => item.id === +payload)
-            state.products.push(item)
-            state.cart.splice(state.cart.indexOf(item), 1)
-        }
+        findItemInCartById(state, payload){
+            state.temp_product = state.cart.find(item => item.id === +payload)
+        },
+        addItemToProducts(state){
+            state.products.push(state.temp_product)
+        },
+        addItemToCart(state) {
+            state.cart.push(state.temp_product)
+        },
+        removeItemFromProducts(state){
+            state.products.splice(state.products.indexOf(state.temp_product), 1)
+        },
+        removeItemFromCart(state) {
+            state.cart.splice(state.cart.indexOf(state.temp_product), 1)
+        },
+        resetTempProduct(state){
+            state.temp_product = null
+        },
     },
     actions: {
-        addItemToCart({ commit }, payload) {
-            commit('addItemToCart', payload)
-
-
+        ADD_ITEM_TO_CART({ commit }, payload) {
+            commit('findItemInProductsById', payload)
+            commit('addItemToCart')
+            commit('removeItemFromProducts')
+            commit('resetTempProduct')
         },
-        removeItemFromCart({ commit }, payload) {
-            commit('removeItemFromCart', payload)
+        REMOVE_ITEM_FROM_CART({ commit }, payload) {
+            commit('findItemInCartById', payload)
+            commit('addItemToProducts')
+            commit('removeItemFromCart')
+            commit('resetTempProduct')
         },
     }
 })

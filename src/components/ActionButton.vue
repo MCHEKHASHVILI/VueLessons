@@ -9,8 +9,8 @@ const primaryButtonClasses = store.getters.getPrimaryButtonClasses
 const dangerButtonClasses = store.getters.getDangerButtonClasses
 </script>
 <template>
-    <button v-if="action === 'add'" @click.prevet="store.dispatch('addItemToCart', props.itemId)" type="button"
+    <button v-if="action === 'add'" @click.prevet="store.dispatch('ADD_ITEM_TO_CART', props.itemId)" type="button"
         :class="primaryButtonClasses">Add Item to Cart</button>
-    <button v-else @click.prevet="store.dispatch('removeItemFromCart', props.itemId)" type="button"
+    <button v-else @click.prevet="store.dispatch('REMOVE_ITEM_FROM_CART', props.itemId)" type="button"
         :class="dangerButtonClasses">Remove From Cart</button>
 </template>
