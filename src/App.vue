@@ -7,7 +7,7 @@ import ProductsListComponent from './components/ProductsListComponent.vue'
 
 <template>
   <MainLayout>
-    <ProductsListComponent class="w-full" />
-    <CartComponent class="w-full" />
+    <ProductsListComponent class="w-full" title="Products List" />
+    <CartComponent class="w-full" title="Cart's List" />
   </MainLayout>
 </template>
